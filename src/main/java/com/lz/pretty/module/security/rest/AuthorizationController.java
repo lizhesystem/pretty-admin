@@ -30,7 +30,7 @@ public class AuthorizationController {
     public AjaxResponse login(@Validated @RequestBody AuthUserDto userDto) {
 
         String username = userDto.getUsername();
-        String password = userDto.getUsername();
+        String password = userDto.getPassword();
 
         try {
             return AjaxResponse.success(jwtAuthService.login(username, password));

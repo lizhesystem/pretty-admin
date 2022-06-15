@@ -54,7 +54,7 @@ public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
         http.cors()
                 .and().addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                    .antMatchers("authentication", "refreshtoken").permitAll();
+                    .antMatchers("/authentication", "/refreshtoken").permitAll();
         // 通过配置实现的不需要JWT令牌就可以访问的接口
         // for(String uri : jwtProperties.getPermitAllURI()){
         //     http.authorizeRequests().antMatchers(uri).permitAll();
@@ -110,5 +110,20 @@ public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
                 this.authenticationManagerBean(),
                 myUserDetailsService,
                 jwtTokenUtil);
+    }
+
+    public static void main(String[] args) {
+        PasswordEncoder passwordEncoder =  new BCryptPasswordEncoder();
+        String rawPassword = "123456";  //原始密码
+        String encodedPassword = passwordEncoder.encode(rawPassword); //加密后的密码
+        System.out.println("原始密码" + rawPassword);
+        System.out.println("加密之后的hash密码:" + encodedPassword);
+
+
+        System.out.println(rawPassword + "是否匹配" + encodedPassword + ":"   //密码校验：true
+                + passwordEncoder.matches(rawPassword, encodedPassword));
+
+        System.out.println("654321是否匹配" + encodedPassword + ":"   //定义一个错误的密码进行校验:false
+                + passwordEncoder.matches("654321", encodedPassword));
     }
 }

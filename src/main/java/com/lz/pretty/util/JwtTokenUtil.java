@@ -4,6 +4,7 @@ import com.lz.pretty.module.security.bean.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -52,6 +53,19 @@ public class JwtTokenUtil {
         return generateToken(claims);
     }
 
+    /**
+     * 生成token令牌
+     *
+     * @param userDetails 用户
+     * @return 令token牌
+     */
+    public String generateToken(UserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<>(2);
+        claims.put("sub", userDetails.getUsername());
+        claims.put("created", new Date());
+
+        return generateToken(claims);
+    }
 
     /**
      * 判断令牌是否过期
@@ -99,6 +113,20 @@ public class JwtTokenUtil {
         String username = getUsernameFromToken(token);
         return (username.equals(usernameParam) && !isTokenExpired(token));
     }
+
+    /**
+     * 验证令牌
+     *
+     * @param token       令牌
+     * @param userDetails 用户
+     * @return 是否有效
+     */
+    public Boolean validateToken(String token, UserDetails userDetails) {
+
+        String username = getUsernameFromToken(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
 
 
     /**

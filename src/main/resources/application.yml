@@ -7,8 +7,6 @@ pretty:
     secret: fjkffff;afa # 表示用于JWT签名和解签名的私钥，需要妥善保管。比如使用Jasypt加密。
     expiration: 3600000 # 表示JWT令牌的过期时间，单位是毫秒
     header: JWTHeaderName
-    userParamName: username
-    pwdParamName: password
     useDefaultController: true
     corsAllowedOrigins:
       - http://localhost:8888

@@ -30,7 +30,7 @@ public interface MyUserDetailsServiceMapper {
             "WHERE u.username = #{userId} or u.phone = #{userId}")
     List<String> findRoleByUserName(@Param("userId") String userId);
 
-    //根据用户角色查询用户权限
+    // 根据用户角色查询用户菜单权限
     @Select({
             "<script>",
             "SELECT url " ,
@@ -43,4 +43,21 @@ public interface MyUserDetailsServiceMapper {
             "</foreach>",
             "</script>"
     })
-    List<String> findAuthorityByRoleCodes(@Param("roleCodes") List<String> roleCodes);}
+    List<String> findAuthorityByRoleCodes(@Param("roleCodes") List<String> roleCodes);
+
+
+    // 通过用户角色列表加载用户的资源权限列表
+    @Select({
+            "<script>",
+            "SELECT url " ,
+            "FROM sys_api a " ,
+            "LEFT JOIN sys_role_api rm ON a.id = ra.api_id " ,
+            "LEFT JOIN sys_role r ON r.id = rm.role_id ",
+            "WHERE r.role_code IN ",
+            "<foreach collection='roleCodes' item='roleCode' open='(' separator=',' close=')'>",
+            "#{roleCode}",
+            "</foreach>",
+            "</script>"
+    })
+    List<String> findApiByRoleCodes(@Param("roleCodes") List<String> roleCodes);
+}

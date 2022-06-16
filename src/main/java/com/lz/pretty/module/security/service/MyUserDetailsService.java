@@ -36,7 +36,7 @@ public class MyUserDetailsService implements UserDetailsService {
         List<String> roleCodes = myUserDetailsServiceMapper.findRoleByUserName(username);
 
         // 根据当前用户角色列表获取加载用户的资源权限列表
-        List<String> authorties = myUserDetailsServiceMapper.findAuthorityByRoleCodes(roleCodes);
+        List<String> authorties = myUserDetailsServiceMapper.findApiByRoleCodes(roleCodes);
 
 
         // 角色是一个特殊的权限，添加ROLE_前缀

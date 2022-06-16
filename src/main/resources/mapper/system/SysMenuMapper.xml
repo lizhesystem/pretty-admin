@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lz.pretty.module.system.mapper.SysMenuMapper">
+  <resultMap id="BaseResultMap" type="com.lz.pretty.module.system.model.SysMenu">
+    <!--@mbg.generated-->
+    <!--@Table sys_menu-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="menu_pid" jdbcType="BIGINT" property="menuPid" />
+    <result column="menu_pids" jdbcType="VARCHAR" property="menuPids" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_sort" jdbcType="INTEGER" property="menuSort" />
+    <result column="is_leaf" jdbcType="BOOLEAN" property="isLeaf" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="status" jdbcType="BOOLEAN" property="status" />
+    <result column="hidden" jdbcType="BOOLEAN" property="hidden" />
+    <result column="view_import" jdbcType="VARCHAR" property="viewImport" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, menu_pid, menu_pids, menu_name, menu_sort, is_leaf, url, icon, `level`, `status`, 
+    hidden, view_import, create_by, create_time, update_by, update_time
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sys_menu
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="menu_pid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.menuPid,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="menu_pids = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.menuPids,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="menu_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.menuName,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="menu_sort = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.menuSort,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="is_leaf = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.isLeaf,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+      <trim prefix="url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.url,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="icon = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.icon,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`level` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.level,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+      <trim prefix="hidden = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.hidden,jdbcType=BOOLEAN}
+        </foreach>
+      </trim>
+      <trim prefix="view_import = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.viewImport,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="create_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="update_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <update id="updateBatchSelective" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update sys_menu
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="menu_pid = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.menuPid != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.menuPid,jdbcType=BIGINT}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="menu_pids = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.menuPids != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.menuPids,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="menu_name = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.menuName != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.menuName,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="menu_sort = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.menuSort != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.menuSort,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="is_leaf = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.isLeaf != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.isLeaf,jdbcType=BOOLEAN}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="url = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.url != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.url,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="icon = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.icon != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.icon,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`level` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.level != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.level,jdbcType=INTEGER}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="`status` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.status != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.status,jdbcType=BOOLEAN}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="hidden = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.hidden != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.hidden,jdbcType=BOOLEAN}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="view_import = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.viewImport != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.viewImport,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createBy != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createBy,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="create_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.createTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.createTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateBy != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateBy,jdbcType=VARCHAR}
+          </if>
+        </foreach>
+      </trim>
+      <trim prefix="update_time = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          <if test="item.updateTime != null">
+            when id = #{item.id,jdbcType=BIGINT} then #{item.updateTime,jdbcType=TIMESTAMP}
+          </if>
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=BIGINT}
+    </foreach>
+  </update>
+  <insert id="batchInsert" parameterType="map">
+    <!--@mbg.generated-->
+    insert into sys_menu
+    (id, menu_pid, menu_pids, menu_name, menu_sort, is_leaf, url, icon, `level`, `status`, 
+      hidden, view_import, create_by, create_time, update_by, update_time)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.id,jdbcType=BIGINT}, #{item.menuPid,jdbcType=BIGINT}, #{item.menuPids,jdbcType=VARCHAR}, 
+        #{item.menuName,jdbcType=VARCHAR}, #{item.menuSort,jdbcType=INTEGER}, #{item.isLeaf,jdbcType=BOOLEAN}, 
+        #{item.url,jdbcType=VARCHAR}, #{item.icon,jdbcType=VARCHAR}, #{item.level,jdbcType=INTEGER}, 
+        #{item.status,jdbcType=BOOLEAN}, #{item.hidden,jdbcType=BOOLEAN}, #{item.viewImport,jdbcType=VARCHAR}, 
+        #{item.createBy,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateBy,jdbcType=VARCHAR}, 
+        #{item.updateTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" parameterType="com.lz.pretty.module.system.model.SysMenu">
+    <!--@mbg.generated-->
+    insert into sys_menu
+    (id, menu_pid, menu_pids, menu_name, menu_sort, is_leaf, url, icon, `level`, `status`, 
+      hidden, view_import, create_by, create_time, update_by, update_time)
+    values
+    (#{id,jdbcType=BIGINT}, #{menuPid,jdbcType=BIGINT}, #{menuPids,jdbcType=VARCHAR}, 
+      #{menuName,jdbcType=VARCHAR}, #{menuSort,jdbcType=INTEGER}, #{isLeaf,jdbcType=BOOLEAN}, 
+      #{url,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER}, #{status,jdbcType=BOOLEAN}, 
+      #{hidden,jdbcType=BOOLEAN}, #{viewImport,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+    on duplicate key update 
+    id = #{id,jdbcType=BIGINT}, 
+    menu_pid = #{menuPid,jdbcType=BIGINT}, 
+    menu_pids = #{menuPids,jdbcType=VARCHAR}, 
+    menu_name = #{menuName,jdbcType=VARCHAR}, 
+    menu_sort = #{menuSort,jdbcType=INTEGER}, 
+    is_leaf = #{isLeaf,jdbcType=BOOLEAN}, 
+    url = #{url,jdbcType=VARCHAR}, 
+    icon = #{icon,jdbcType=VARCHAR}, 
+    `level` = #{level,jdbcType=INTEGER}, 
+    `status` = #{status,jdbcType=BOOLEAN}, 
+    hidden = #{hidden,jdbcType=BOOLEAN}, 
+    view_import = #{viewImport,jdbcType=VARCHAR}, 
+    create_by = #{createBy,jdbcType=VARCHAR}, 
+    create_time = #{createTime,jdbcType=TIMESTAMP}, 
+    update_by = #{updateBy,jdbcType=VARCHAR}, 
+    update_time = #{updateTime,jdbcType=TIMESTAMP}
+  </insert>
+  <insert id="insertOrUpdateSelective" parameterType="com.lz.pretty.module.system.model.SysMenu">
+    <!--@mbg.generated-->
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="menuPid != null">
+        menu_pid,
+      </if>
+      <if test="menuPids != null">
+        menu_pids,
+      </if>
+      <if test="menuName != null">
+        menu_name,
+      </if>
+      <if test="menuSort != null">
+        menu_sort,
+      </if>
+      <if test="isLeaf != null">
+        is_leaf,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="level != null">
+        `level`,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="hidden != null">
+        hidden,
+      </if>
+      <if test="viewImport != null">
+        view_import,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="menuPid != null">
+        #{menuPid,jdbcType=BIGINT},
+      </if>
+      <if test="menuPids != null">
+        #{menuPids,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null">
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuSort != null">
+        #{menuSort,jdbcType=INTEGER},
+      </if>
+      <if test="isLeaf != null">
+        #{isLeaf,jdbcType=BOOLEAN},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=BOOLEAN},
+      </if>
+      <if test="hidden != null">
+        #{hidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="viewImport != null">
+        #{viewImport,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update 
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="menuPid != null">
+        menu_pid = #{menuPid,jdbcType=BIGINT},
+      </if>
+      <if test="menuPids != null">
+        menu_pids = #{menuPids,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null">
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuSort != null">
+        menu_sort = #{menuSort,jdbcType=INTEGER},
+      </if>
+      <if test="isLeaf != null">
+        is_leaf = #{isLeaf,jdbcType=BOOLEAN},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        `level` = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=BOOLEAN},
+      </if>
+      <if test="hidden != null">
+        hidden = #{hidden,jdbcType=BOOLEAN},
+      </if>
+      <if test="viewImport != null">
+        view_import = #{viewImport,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

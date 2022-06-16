@@ -14,6 +14,7 @@ pretty:
     corsAllowedMethods:
       - GET
       - POST
+    devOpeningURI:
 
 mybatis-plus:
   configuration:

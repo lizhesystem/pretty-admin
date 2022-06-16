@@ -1,33 +1,35 @@
 package com.lz.pretty.module.system.service;
 
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import java.util.List;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import java.util.List;
-import com.lz.pretty.module.system.model.SysUserRole;
 import com.lz.pretty.module.system.mapper.SysUserRoleMapper;
+import com.lz.pretty.module.system.model.SysUserRole;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 @Service
 public class SysUserRoleService extends ServiceImpl<SysUserRoleMapper, SysUserRole> {
 
+    @Autowired
+    private SysUserRoleMapper sysUserRoleMapper;
     
     public int updateBatch(List<SysUserRole> list) {
-        return baseMapper.updateBatch(list);
+        return sysUserRoleMapper.updateBatch(list);
     }
     
     public int updateBatchSelective(List<SysUserRole> list) {
-        return baseMapper.updateBatchSelective(list);
+        return sysUserRoleMapper.updateBatchSelective(list);
     }
     
     public int batchInsert(List<SysUserRole> list) {
-        return baseMapper.batchInsert(list);
+        return sysUserRoleMapper.batchInsert(list);
     }
     
     public int insertOrUpdate(SysUserRole record) {
-        return baseMapper.insertOrUpdate(record);
+        return sysUserRoleMapper.insertOrUpdate(record);
     }
     
     public int insertOrUpdateSelective(SysUserRole record) {
-        return baseMapper.insertOrUpdateSelective(record);
+        return sysUserRoleMapper.insertOrUpdateSelective(record);
     }
 }

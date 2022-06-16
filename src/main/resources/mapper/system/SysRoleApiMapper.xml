@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lz.pretty.module.system.mapper.SysRoleApiMapper">
+
   <resultMap id="BaseResultMap" type="com.lz.pretty.module.system.model.SysRoleApi">
     <!--@mbg.generated-->
     <!--@Table sys_role_api-->

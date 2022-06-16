@@ -3,6 +3,7 @@ package com.lz.pretty.module.security.service;
 
 import com.lz.pretty.module.security.bean.MyUserDetails;
 import com.lz.pretty.module.security.mapper.MyUserDetailsServiceMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,7 +24,7 @@ import java.util.stream.Collectors;
 @Component
 public class MyUserDetailsService implements UserDetailsService {
 
-    @Resource
+    @Autowired
     private MyUserDetailsServiceMapper myUserDetailsServiceMapper;
 
     @Override

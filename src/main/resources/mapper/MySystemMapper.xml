@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lz.pretty.module.system.mapper.MySystemMapper">
+
+    <select id="selectOrgTree"
+            resultType="com.lz.pretty.module.system.model.SysOrg">
+        SELECT id,org_pid,org_pids,is_leaf,org_name,address,phone,email,org_sort,level,status
+        FROM sys_org o
+        <trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="AND|OR">
+            AND (org_pids like CONCAT('%[',#{rootOrgId},']%') OR id = #{rootOrgId})
+            <if test="orgNameLike !=null and orgNameLike != '' ">
+                AND org_name like CONCAT('%',#{orgNameLike},'%')
+            </if>
+            <if test="orgStatus !=null  ">
+                AND status = #{orgStatus}
+            </if>
+        </trim>
+        ORDER BY level,org_sort
+    </select>
+</mapper>

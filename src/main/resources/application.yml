@@ -16,7 +16,11 @@ pretty:
       - POST
     devOpeningURI:
       - /sysuser/info
+      - /sysorg/tree
+swagger:
+  enable: true # 启用swagger
 
+# mybatis-plus日志
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志

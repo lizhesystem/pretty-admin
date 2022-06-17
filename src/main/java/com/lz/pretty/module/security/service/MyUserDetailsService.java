@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
 @Component
 public class MyUserDetailsService implements UserDetailsService {
 
-    @Autowired
+    @Resource
     private MyUserDetailsServiceMapper myUserDetailsServiceMapper;
 
     @Override

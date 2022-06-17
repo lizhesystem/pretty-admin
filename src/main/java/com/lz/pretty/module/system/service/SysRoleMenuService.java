@@ -8,28 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class SysRoleMenuService extends ServiceImpl<SysRoleMenuMapper, SysRoleMenu> {
+public class SysRoleMenuService{
 
     @Autowired
     private SysRoleMenuMapper sysRoleMenuMapper;
-    
-    public int updateBatch(List<SysRoleMenu> list) {
-        return sysRoleMenuMapper.updateBatch(list);
-    }
-    
-    public int updateBatchSelective(List<SysRoleMenu> list) {
-        return sysRoleMenuMapper.updateBatchSelective(list);
-    }
-    
-    public int batchInsert(List<SysRoleMenu> list) {
-        return sysRoleMenuMapper.batchInsert(list);
-    }
-    
-    public int insertOrUpdate(SysRoleMenu record) {
-        return sysRoleMenuMapper.insertOrUpdate(record);
-    }
-    
-    public int insertOrUpdateSelective(SysRoleMenu record) {
-        return sysRoleMenuMapper.insertOrUpdateSelective(record);
-    }
+
+
 }

@@ -24,14 +24,12 @@ public class SysRoleMenu {
     /**
      * 角色id
      */
-    @TableId(value = "role_id", type = IdType.INPUT)
     @ApiModelProperty(value="角色id")
     private Long roleId;
 
     /**
      * 权限id
      */
-    @TableId(value = "menu_id", type = IdType.INPUT)
     @ApiModelProperty(value="权限id")
     private Long menuId;
 }

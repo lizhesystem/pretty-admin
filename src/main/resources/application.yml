@@ -15,6 +15,7 @@ pretty:
       - GET
       - POST
     devOpeningURI:
+      - /sysuser/info
 
 mybatis-plus:
   configuration:

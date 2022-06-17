@@ -8,28 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class SysUserRoleService extends ServiceImpl<SysUserRoleMapper, SysUserRole> {
+public class SysUserRoleService{
 
     @Autowired
     private SysUserRoleMapper sysUserRoleMapper;
-    
-    public int updateBatch(List<SysUserRole> list) {
-        return sysUserRoleMapper.updateBatch(list);
-    }
-    
-    public int updateBatchSelective(List<SysUserRole> list) {
-        return sysUserRoleMapper.updateBatchSelective(list);
-    }
-    
-    public int batchInsert(List<SysUserRole> list) {
-        return sysUserRoleMapper.batchInsert(list);
-    }
-    
-    public int insertOrUpdate(SysUserRole record) {
-        return sysUserRoleMapper.insertOrUpdate(record);
-    }
-    
-    public int insertOrUpdateSelective(SysUserRole record) {
-        return sysUserRoleMapper.insertOrUpdateSelective(record);
-    }
+
 }

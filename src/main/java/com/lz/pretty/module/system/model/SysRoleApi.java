@@ -24,14 +24,12 @@ public class SysRoleApi {
     /**
      * 角色id
      */
-    @TableId(value = "role_id", type = IdType.INPUT)
     @ApiModelProperty(value="角色id")
     private Long roleId;
 
     /**
      * 接口id
      */
-    @TableId(value = "api_id", type = IdType.INPUT)
     @ApiModelProperty(value="接口id")
     private Long apiId;
 }

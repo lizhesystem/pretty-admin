@@ -8,29 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class SysConfigService extends ServiceImpl<SysConfigMapper, SysConfig> {
+public class SysConfigService {
     
     @Autowired
     private SysConfigMapper sysConfigMapper;
 
-    
-    public int updateBatch(List<SysConfig> list) {
-        return sysConfigMapper.updateBatch(list);
-    }
-    
-    public int updateBatchSelective(List<SysConfig> list) {
-        return sysConfigMapper.updateBatchSelective(list);
-    }
-    
-    public int batchInsert(List<SysConfig> list) {
-        return sysConfigMapper.batchInsert(list);
-    }
-    
-    public int insertOrUpdate(SysConfig record) {
-        return sysConfigMapper.insertOrUpdate(record);
-    }
-    
-    public int insertOrUpdateSelective(SysConfig record) {
-        return sysConfigMapper.insertOrUpdateSelective(record);
-    }
 }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.nio.file.ClosedFileSystemException;
+
 /**
  * 类描述:
  * 用户管理
@@ -24,7 +26,9 @@ public class SysUserController {
     private SysUserService sysUserService;
 
     @GetMapping("/info")
-    public SysUser info(@RequestParam("username") String username) {
-        return sysUserService.getUserByUserName(username);
+    public AjaxResponse info(@RequestParam("username") String username) {
+        SysUser sysUser = sysUserService.getUserByUserName(username);
+        System.out.println(sysUser.toString());
+        return AjaxResponse.success(sysUser);
     }
 }

@@ -24,14 +24,12 @@ public class SysUserRole {
     /**
      * 角色自增id
      */
-    @TableId(value = "role_id", type = IdType.INPUT)
     @ApiModelProperty(value="角色自增id")
     private Long roleId;
 
     /**
      * 用户自增id
      */
-    @TableId(value = "user_id", type = IdType.INPUT)
     @ApiModelProperty(value="用户自增id")
     private Long userId;
 }

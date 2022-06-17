@@ -2,6 +2,7 @@ package com.lz.pretty.module.security.service;
 
 import com.lz.pretty.module.security.bean.JwtProperties;
 import com.lz.pretty.module.security.mapper.MyRBACServiceMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -20,6 +21,7 @@ import java.util.List;
  * @create 2022-06-15 17:15
  */
 @Component("rabcService")
+@Slf4j
 public class MyRBACService {
 
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
@@ -40,10 +42,11 @@ public class MyRBACService {
             List<GrantedAuthority> authorityList = AuthorityUtils.commaSeparatedStringToAuthorityList(request.getRequestURI());
 
             // 判断某用户是否具有该request资源的访问权限
+            log.info("openURI = {}",jwtProperties.getDevOpeningURI().toString());
             return userDetails.getAuthorities().contains(authorityList.get(0))
                     || jwtProperties.getDevOpeningURI().contains(request.getRequestURI());
         }
-        return false;
+        return true;
     }
 
 }

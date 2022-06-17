@@ -5,6 +5,7 @@ import com.lz.pretty.module.security.service.MyUserDetailsService;
 import com.lz.pretty.util.JwtTokenUtil;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.Resource;

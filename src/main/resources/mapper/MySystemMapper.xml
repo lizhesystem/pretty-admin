@@ -18,4 +18,37 @@
         </trim>
         ORDER BY level,org_sort
     </select>
+
+    <select id="selectMenuTree"
+            resultType="com.lz.pretty.module.system.model.SysMenu">
+        SELECT id,menu_pid,menu_pids,menu_name,menu_sort,is_leaf,url,icon,level,status,hidden,view_import
+        FROM sys_menu m
+        <trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="AND|OR">
+            # 模糊查询
+            AND (menu_pids like CONCAT('%[',#{rootMenuId},']%') OR id = #{rootMenuId})
+            <if test="menuNameLike !=null and menuNameLike != '' ">
+                AND menu_name like CONCAT('%',#{menuNameLike},'%')
+            </if>
+            <if test="menuStatus !=null  ">
+                AND status = #{menuStatus}
+            </if>
+        </trim>
+        ORDER BY level,menu_sort
+    </select>
+
+    <select id="selectApiTree" resultType="com.lz.pretty.module.system.model.SysApi">
+        SELECT id,api_pid,api_pids,is_leaf,api_name,url,api_sort,level,status
+        FROM sys_api a
+        <trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="AND|OR">
+            # 模糊查询
+            AND (api_pids like CONCAT('%[',#{rootApiId},']%') OR id = #{rootApiId})
+            <if test="apiNameLike !=null and apiNameLike != '' ">
+                AND api_name like CONCAT('%',#{apiNameLike},'%')
+            </if>
+            <if test="apiStatus !=null  ">
+                AND status = #{apiStatus}
+            </if>
+        </trim>
+        ORDER BY level,api_sort
+    </select>
 </mapper>

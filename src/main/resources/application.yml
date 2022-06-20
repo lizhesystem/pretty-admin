@@ -17,6 +17,13 @@ pretty:
     devOpeningURI:
       - /sysuser/info
       - /sysorg/tree
+      - /sysorg/add
+      - /sysorg/update
+      - /sysorg/delete
+      - /sysmenu/tree
+      - /sysmenu/add
+      - /sysmenu/update
+      - /sysmenu/delete
 swagger:
   enable: true # 启用swagger
 

@@ -1,4 +1,4 @@
-package com.lz.pretty.util;
+package com.lz.pretty.common.utils;
 
 import com.lz.pretty.module.security.bean.JwtProperties;
 import io.jsonwebtoken.Claims;
@@ -126,7 +126,6 @@ public class JwtTokenUtil {
         String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
-
 
 
     /**

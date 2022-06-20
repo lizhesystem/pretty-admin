@@ -1,6 +1,7 @@
-package com.lz.pretty.module.system.model;
+package com.lz.pretty.module.system.model.node;
 
-import com.lz.pretty.common.utils.DataTree;
+import com.lz.pretty.common.utils.tree.DataTree;
+import com.lz.pretty.module.system.model.SysOrg;
 
 import java.util.List;
 

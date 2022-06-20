@@ -1,11 +1,10 @@
 package com.lz.pretty.module.security.config;
 
+import com.lz.pretty.common.utils.JwtTokenUtil;
 import com.lz.pretty.module.security.bean.JwtProperties;
 import com.lz.pretty.module.security.service.MyUserDetailsService;
-import com.lz.pretty.util.JwtTokenUtil;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.Resource;

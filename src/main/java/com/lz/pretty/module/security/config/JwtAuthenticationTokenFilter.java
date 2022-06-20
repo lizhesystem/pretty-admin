@@ -1,8 +1,8 @@
 package com.lz.pretty.module.security.config;
 
+import com.lz.pretty.common.utils.JwtTokenUtil;
 import com.lz.pretty.module.security.bean.JwtProperties;
 import com.lz.pretty.module.security.service.MyUserDetailsService;
-import com.lz.pretty.util.JwtTokenUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

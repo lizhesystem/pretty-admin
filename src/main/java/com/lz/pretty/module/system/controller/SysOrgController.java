@@ -3,7 +3,7 @@ package com.lz.pretty.module.system.controller;
 import com.lz.pretty.common.domain.AjaxResponse;
 import com.lz.pretty.module.system.model.SysOrg;
 import com.lz.pretty.module.system.model.SysUser;
-import com.lz.pretty.module.system.model.node.SysOrgNode;
+import com.lz.pretty.module.system.model.treenode.SysOrgNode;
 import com.lz.pretty.module.system.service.SysOrgService;
 import com.lz.pretty.module.system.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;

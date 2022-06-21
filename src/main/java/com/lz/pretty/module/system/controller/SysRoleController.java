@@ -1,0 +1,45 @@
+package com.lz.pretty.module.system.controller;
+
+import com.lz.pretty.common.domain.AjaxResponse;
+import com.lz.pretty.module.system.model.SysRole;
+import com.lz.pretty.module.system.service.SysRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+/**
+ * 类描述: 角色管理
+ *
+ * @author Lz on 2022-06-21
+ */
+@RestController
+@RequestMapping("/sysrole")
+public class SysRoleController {
+
+    @Autowired
+    private SysRoleService sysRoleService;
+
+    @PostMapping(value = "/query")
+    public List<SysRole> query(@RequestParam("roleLike") String roleLike) {
+        return sysRoleService.queryRoles(roleLike);
+    }
+
+    @PostMapping(value = "/update")
+    public AjaxResponse update(@RequestBody SysRole sysRole) {
+        sysRoleService.updateRole(sysRole);
+        return AjaxResponse.success("更新角色成功！");
+    }
+
+    @PostMapping(value = "/add")
+    public AjaxResponse add(@RequestBody SysRole sysRole) {
+        sysRoleService.addRole(sysRole);
+        return AjaxResponse.success("新增角色成功！");
+    }
+
+    @PostMapping(value = "/delete")
+    public AjaxResponse delete(@RequestParam Integer roleId) {
+        sysRoleService.deleteRole(roleId);
+        return AjaxResponse.success("删除角色成功!");
+    }
+}

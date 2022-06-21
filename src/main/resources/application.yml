@@ -24,6 +24,10 @@ pretty:
       - /sysmenu/add
       - /sysmenu/update
       - /sysmenu/delete
+      - /sysrole/query
+      - /sysrole/add
+      - /sysrole/update
+      - /sysrole/delete
 swagger:
   enable: true # 启用swagger
 
@@ -33,6 +37,9 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
 
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/pretty-admin?serverTimezone=GMT%2B8&characterEncoding=utf-8
     username: root

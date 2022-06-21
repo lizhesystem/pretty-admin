@@ -3,11 +3,13 @@ package com.lz.pretty.module.system.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lz.pretty.module.system.mapper.SysUserMapper;
 import com.lz.pretty.module.system.model.SysUser;
+import com.lz.pretty.module.system.model.vo.SysUserOrgVO;
 import io.jsonwebtoken.lang.Assert;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class SysUserService {
@@ -25,5 +27,10 @@ public class SysUserService {
             sysUser.setPassword("");
         }
         return sysUser;
+    }
+
+
+    public List<SysUserOrgVO> queryUser(SysUser sysUser) {
+        return sysUserMapper.queryList(sysUser);
     }
 }

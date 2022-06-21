@@ -1,16 +1,18 @@
 package com.lz.pretty.module.system.controller;
 
+import com.lz.pretty.common.controller.BaseController;
+import com.lz.pretty.common.page.TableDataInfo;
 import com.lz.pretty.module.system.model.SysUser;
+import com.lz.pretty.module.system.model.vo.SysUserOrgVO;
 import com.lz.pretty.module.system.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 类描述:
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sysuser")
 @Api(tags = "用户管理", value = "用户管理")
-public class SysUserController {
+public class SysUserController extends BaseController {
 
     @Autowired
     private SysUserService sysUserService;
@@ -35,5 +37,12 @@ public class SysUserController {
     @GetMapping("/info")
     public SysUser info(@RequestParam("username") String username) {
         return sysUserService.getUserByUserName(username);
+    }
+
+    @PostMapping("/query")
+    public TableDataInfo query(SysUser sysUser) {
+        startPage();
+        List<SysUserOrgVO> sysUserList = sysUserService.queryUser(sysUser);
+        return getDataTable(sysUserList);
     }
 }

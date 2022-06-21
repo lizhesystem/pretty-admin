@@ -7,7 +7,7 @@ import com.lz.pretty.common.utils.tree.DataTreeUtil;
 import com.lz.pretty.module.system.mapper.MySystemMapper;
 import com.lz.pretty.module.system.mapper.SysOrgMapper;
 import com.lz.pretty.module.system.model.SysOrg;
-import com.lz.pretty.module.system.model.node.SysOrgNode;
+import com.lz.pretty.module.system.model.treenode.SysOrgNode;
 import io.jsonwebtoken.lang.Assert;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -71,7 +71,8 @@ public class SysOrgService {
         parent.setIsLeaf(false);
         sysOrgMapper.updateById(parent);
 
-        sysOrg.setStatus(false); // 新增默认节点可用
+        // 新增默认节点可用
+        sysOrg.setStatus(false);
         sysOrgMapper.insert(sysOrg);
     }
 

@@ -3,6 +3,8 @@ package com.lz.pretty.module.system.mapper;
 import com.lz.pretty.module.system.model.SysApi;
 import com.lz.pretty.module.system.model.SysMenu;
 import com.lz.pretty.module.system.model.SysOrg;
+import com.lz.pretty.module.system.model.SysUser;
+import com.lz.pretty.module.system.model.vo.SysUserOrgVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -42,12 +44,60 @@ public interface MySystemMapper {
 
     /**
      * 获取接口
+     *
      * @param rootApiId
      * @param apiNameLike
      * @param apiStatus
      * @return
      */
-    List<SysApi> selectApiTree(@Param("rootApiId") Integer rootApiId ,
+    List<SysApi> selectApiTree(@Param("rootApiId") Long rootApiId,
                                @Param("apiNameLike") String apiNameLike,
                                @Param("apiStatus") Boolean apiStatus);
+
+    /**
+     * 获取某角色勾选的API访问权限的展开节点
+     */
+    List<String> selectApiExpandedKeys();
+
+
+    /**
+     * 获取在API分类树中展开的勾选的项
+     *
+     * @param roleId
+     * @return
+     */
+    List<String> selectApiCheckedKeys(Integer roleId);
+
+    /**
+     * 批量保存角色勾选API接口权限
+     *
+     * @param roleId
+     * @param checkedIds
+     */
+    void insertRoleApiIds(@Param("roleId") Long roleId, @Param("checkedIds") List<Long> checkedIds);
+
+
+    /**
+     * 获取某角色勾选的菜单的展开节点
+     */
+    List<String> selectMenuExpandedKeys();
+
+    /**
+     * 获取角色设置菜单树勾选的项
+     *
+     * @param roleId
+     * @return
+     */
+    List<String> selectMenuCheckedKeys(Integer roleId);
+
+    /**
+     * 批量保存角色勾选API接口权限
+     *
+     * @param roleId
+     * @param checkedIds
+     */
+    void insertRoleMenuIds(@Param("roleId") Long roleId, @Param("checkedIds") List<Long> checkedIds);
+
+
+    List<SysUserOrgVO> selectUser(SysUser sysUser);
 }

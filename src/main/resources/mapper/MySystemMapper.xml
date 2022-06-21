@@ -51,4 +51,46 @@
         </trim>
         ORDER BY level,api_sort
     </select>
+
+    <!--接口权限相关-->
+    <select id="selectApiExpandedKeys" resultType="java.lang.String">
+        SELECT distinct id
+        FROM sys_api
+        WHERE level = 2
+    </select>
+
+    <select id="selectApiCheckedKeys" resultType="java.lang.String">
+        SELECT distinct api_id
+        FROM sys_role_api
+        WHERE role_id = #{roleId}
+    </select>
+
+    <insert id="insertRoleApiIds">
+        INSERT into sys_role_api(role_id, api_id) VALUE
+        <foreach collection="checkedIds" item="item" separator=",">
+            (#{roleId},#{item})
+        </foreach>
+    </insert>
+
+    <!--菜单权限相关-->
+    <select id="selectMenuExpandedKeys" resultType="java.lang.String">
+        SELECT distinct id
+        FROM sys_menu
+        WHERE level = 2
+    </select>
+
+    <select id="selectMenuCheckedKeys" resultType="java.lang.String">
+        SELECT distinct menu_id
+        FROM sys_role_menu
+        WHERE role_id = #{roleId}
+    </select>
+
+    <insert id="insertRoleMenuIds">
+        INSERT into sys_role_menu(role_id, menu_id) VALUE
+        <foreach collection="checkedIds" item="item" separator=",">
+            (#{roleId},#{item})
+        </foreach>
+    </insert>
+
+
 </mapper>

@@ -1,4 +1,4 @@
-package com.lz.pretty.module.system.model.node;
+package com.lz.pretty.module.system.model.treenode;
 
 import com.lz.pretty.common.utils.tree.DataTree;
 import com.lz.pretty.module.system.model.SysMenu;

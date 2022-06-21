@@ -21,8 +21,8 @@ public class SysRoleController {
     private SysRoleService sysRoleService;
 
     @PostMapping(value = "/query")
-    public List<SysRole> query(@RequestParam("roleLike") String roleLike) {
-        return sysRoleService.queryRoles(roleLike);
+    public AjaxResponse query(@RequestParam("roleLike") String roleLike) {
+        return AjaxResponse.success(sysRoleService.queryRoles(roleLike));
     }
 
     @PostMapping(value = "/update")

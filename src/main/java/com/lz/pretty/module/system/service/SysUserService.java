@@ -5,8 +5,8 @@ import com.lz.pretty.module.system.mapper.SysUserMapper;
 import com.lz.pretty.module.system.model.SysUser;
 import com.lz.pretty.module.system.model.vo.SysUserOrgVO;
 import io.jsonwebtoken.lang.Assert;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -20,7 +20,7 @@ public class SysUserService {
 
 
     public SysUser getUserByUserName(String username) {
-        Assert.isTrue(!StringUtils.isEmpty(username), "查询参数用户名不存在");
+        Assert.isTrue(StringUtils.isNoneEmpty(username), "查询参数用户名不存在");
         SysUser sysUser = sysUserMapper.selectOne(
                 new QueryWrapper<SysUser>().eq("username", username));
         if (sysUser != null) {
@@ -30,7 +30,7 @@ public class SysUserService {
     }
 
 
-    public List<SysUserOrgVO> queryUser(SysUser sysUser) {
+    public List<SysUserOrgVO> queryUser(SysUserOrgVO sysUser) {
         return sysUserMapper.queryList(sysUser);
     }
 }

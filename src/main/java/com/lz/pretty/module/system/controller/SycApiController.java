@@ -3,14 +3,12 @@ package com.lz.pretty.module.system.controller;
 import com.lz.pretty.common.domain.AjaxResponse;
 import com.lz.pretty.module.system.model.SysApi;
 import com.lz.pretty.module.system.model.dto.RoleCheckedIdsDTO;
-import com.lz.pretty.module.system.model.treenode.SysApiNode;
 import com.lz.pretty.module.system.service.SysApiService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * 类描述:Api管理
@@ -25,10 +23,10 @@ public class SycApiController {
     private SysApiService sysapiService;
 
     @PostMapping(value = "/tree")
-    public List<SysApiNode> tree(@RequestParam("apiNameLike") String apiNameLike,
-                                 @RequestParam("apiStatus") Boolean apiStatus) {
+    public AjaxResponse tree(@RequestParam("apiNameLike") String apiNameLike,
+                             @RequestParam("apiStatus") Boolean apiStatus) {
 
-        return sysapiService.getApiTreeById(apiNameLike, apiStatus);
+        return AjaxResponse.success(sysapiService.getApiTreeById(apiNameLike, apiStatus));
     }
 
     @PostMapping(value = "/update")

@@ -3,6 +3,7 @@ package com.lz.pretty.module.system.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lz.pretty.common.constant.CustomExceptionType;
 import com.lz.pretty.common.exception.CustomException;
+import com.lz.pretty.common.utils.StringUtils;
 import com.lz.pretty.common.utils.tree.DataTreeUtil;
 import com.lz.pretty.module.system.mapper.MySystemMapper;
 import com.lz.pretty.module.system.mapper.SysApiMapper;
@@ -15,7 +16,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -54,11 +54,11 @@ public class SysApiService {
             }).collect(Collectors.toList());
 
             // 为空代表查询树形列表
-            if (StringUtils.isEmpty(apiNameLike)) {
-                return DataTreeUtil.buildTree(sysApiNodes, rootSysApiId);
-            } else {
-                // 不为空查询列表
+            if (StringUtils.isNotEmpty(apiNameLike)) {
                 return sysApiNodes;
+            } else {
+                return DataTreeUtil.buildTree(sysApiNodes, rootSysApiId);
+                // 不为空查询列表
             }
 
 

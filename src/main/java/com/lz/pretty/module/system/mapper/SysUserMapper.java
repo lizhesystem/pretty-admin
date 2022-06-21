@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
-    List<SysUserOrgVO> queryList(SysUser sysUser);
+    List<SysUserOrgVO> queryList(SysUserOrgVO sysUser);
 }

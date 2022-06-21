@@ -9,10 +9,10 @@ import com.lz.pretty.module.system.mapper.SysOrgMapper;
 import com.lz.pretty.module.system.model.SysOrg;
 import com.lz.pretty.module.system.model.treenode.SysOrgNode;
 import io.jsonwebtoken.lang.Assert;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -50,12 +50,12 @@ public class SysOrgService {
             return node;
         }).collect(Collectors.toList());
 
-        if (StringUtils.isEmpty(orgNameLike)) {
-            // 返回树型结构列表
-            return DataTreeUtil.buildTree(sysOrgNodes, rootOrgId);
-        } else {
+        if (StringUtils.isNoneEmpty(orgNameLike)) {
             // 根据组织名称查询，返回平面列表
             return sysOrgNodes;
+        } else {
+            // 返回树型结构列表
+            return DataTreeUtil.buildTree(sysOrgNodes, rootOrgId);
         }
     }
 

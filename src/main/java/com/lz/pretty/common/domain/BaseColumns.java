@@ -48,12 +48,8 @@ public class BaseColumns implements Serializable {
     private LocalDateTime updateTime;
 
     /**
-     * 备注
-     */
-    private String remark;
-
-    /**
      * 请求参数
      */
+    @TableField(exist = false)
     private Map<String, Object> params;
 }

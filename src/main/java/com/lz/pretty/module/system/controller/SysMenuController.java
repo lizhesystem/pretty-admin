@@ -3,14 +3,12 @@ package com.lz.pretty.module.system.controller;
 import com.lz.pretty.common.domain.AjaxResponse;
 import com.lz.pretty.module.system.model.SysMenu;
 import com.lz.pretty.module.system.model.dto.RoleCheckedIdsDTO;
-import com.lz.pretty.module.system.model.treenode.SysMenuNode;
 import com.lz.pretty.module.system.service.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * 类描述: 菜单管理
@@ -25,10 +23,10 @@ public class SysMenuController {
     private SysMenuService sysMenuService;
 
     @RequestMapping("/tree")
-    public List<SysMenuNode> tree(@RequestParam("menuNameLike") String menuNameLike,
-                                  @RequestParam("menuStatus") Boolean menuStatus) {
+    public AjaxResponse tree(@RequestParam("menuNameLike") String menuNameLike,
+                             @RequestParam("menuStatus") Boolean menuStatus) {
 
-        return sysMenuService.getMenuTree(menuNameLike, menuStatus);
+        return AjaxResponse.success(sysMenuService.getMenuTree(menuNameLike, menuStatus));
     }
 
     @PostMapping("/add")

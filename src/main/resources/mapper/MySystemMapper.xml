@@ -7,7 +7,6 @@
         SELECT id,org_pid,org_pids,is_leaf,org_name,address,phone,email,org_sort,level,status
         FROM sys_org o
         <trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="AND|OR">
-            # 模糊查询
             AND (org_pids like CONCAT('%[',#{rootOrgId},']%') OR id = #{rootOrgId})
             <if test="orgNameLike !=null and orgNameLike != '' ">
                 AND org_name like CONCAT('%',#{orgNameLike},'%')
@@ -24,7 +23,6 @@
         SELECT id,menu_pid,menu_pids,menu_name,menu_sort,is_leaf,url,icon,level,status,hidden,view_import
         FROM sys_menu m
         <trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="AND|OR">
-            # 模糊查询
             AND (menu_pids like CONCAT('%[',#{rootMenuId},']%') OR id = #{rootMenuId})
             <if test="menuNameLike !=null and menuNameLike != '' ">
                 AND menu_name like CONCAT('%',#{menuNameLike},'%')
@@ -40,7 +38,6 @@
         SELECT id,api_pid,api_pids,is_leaf,api_name,url,api_sort,level,status
         FROM sys_api a
         <trim prefix="WHERE" prefixOverrides="AND|OR" suffixOverrides="AND|OR">
-            # 模糊查询
             AND (api_pids like CONCAT('%[',#{rootApiId},']%') OR id = #{rootApiId})
             <if test="apiNameLike !=null and apiNameLike != '' ">
                 AND api_name like CONCAT('%',#{apiNameLike},'%')

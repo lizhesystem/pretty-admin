@@ -1,6 +1,7 @@
 package com.lz.pretty.module.system.controller;
 
 import com.lz.pretty.common.controller.BaseController;
+import com.lz.pretty.common.domain.AjaxResponse;
 import com.lz.pretty.common.page.TableDataInfo;
 import com.lz.pretty.module.system.model.SysUser;
 import com.lz.pretty.module.system.model.vo.SysUserOrgVO;
@@ -35,12 +36,12 @@ public class SysUserController extends BaseController {
     })
 
     @GetMapping("/info")
-    public SysUser info(@RequestParam("username") String username) {
-        return sysUserService.getUserByUserName(username);
+    public AjaxResponse info(@RequestParam("username") String username) {
+        return AjaxResponse.success(sysUserService.getUserByUserName(username));
     }
 
     @PostMapping("/query")
-    public TableDataInfo query(SysUser sysUser) {
+    public TableDataInfo query(SysUserOrgVO sysUser) {
         startPage();
         List<SysUserOrgVO> sysUserList = sysUserService.queryUser(sysUser);
         return getDataTable(sysUserList);

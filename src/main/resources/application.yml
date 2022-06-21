@@ -16,6 +16,7 @@ pretty:
       - POST
     devOpeningURI:
       - /sysuser/info
+      - /sysuser/query
       - /sysorg/tree
       - /sysorg/add
       - /sysorg/update

@@ -25,7 +25,6 @@ public class SysMenuController {
     @RequestMapping("/tree")
     public AjaxResponse tree(@RequestParam("menuNameLike") String menuNameLike,
                              @RequestParam("menuStatus") Boolean menuStatus) {
-
         return AjaxResponse.success(sysMenuService.getMenuTree(menuNameLike, menuStatus));
     }
 
@@ -61,7 +60,7 @@ public class SysMenuController {
      * @return
      */
     @PostMapping(value = "/checkedtree")
-    public AjaxResponse checkedtree(@RequestParam Integer roleId) {
+    public AjaxResponse checkedTree(@RequestParam Integer roleId) {
         HashMap<String, Object> menuMaps = new HashMap<>();
         menuMaps.put("tree", sysMenuService.getMenuTree("", null));
         menuMaps.put("expendedKeys", sysMenuService.getExpandedKeys());
@@ -82,6 +81,17 @@ public class SysMenuController {
                 roleCheckedIds.getCheckedIds()
         );
         return AjaxResponse.success("保存接口权限成功！");
+    }
+
+    /**
+     * 系统左侧菜单栏加载，根据用户名获取菜单
+     *
+     * @param username
+     * @return
+     */
+    @PostMapping("/tree/user")
+    public AjaxResponse userTree(@RequestParam String username) {
+        return AjaxResponse.success(sysMenuService.getMenuTreeByUsername(username));
     }
 
 }

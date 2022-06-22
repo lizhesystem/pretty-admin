@@ -16,7 +16,7 @@ public class SysMenuNode extends SysMenu implements DataTree<SysMenuNode, Long> 
 
     @Override
     public Long getParentId() {
-        return super.getId();
+        return super.getMenuPid();
     }
 
     @Override

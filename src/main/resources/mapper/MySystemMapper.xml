@@ -90,4 +90,27 @@
     </insert>
 
 
+    <select id="selectMenuByUsername" resultType="com.lz.pretty.module.system.model.SysMenu">
+        SELECT DISTINCT m.id,
+                        menu_id,
+                        menu_pid,
+                        menu_pids,
+                        is_leaf,
+                        menu_name,
+                        url,
+                        icon,
+                        menu_sort,
+                        level,
+                        status,
+                        hidden,
+                        view_import
+        from sys_menu m
+                 left join sys_role_menu srm on m.id = srm.menu_id
+                 left join sys_user_role sur on srm.role_id = sur.role_id
+                 left join sys_user su on su.id = sur.user_id
+        where su.username = #{username}
+          and m.status = 0
+        order by level, menu_sort
+    </select>
+
 </mapper>

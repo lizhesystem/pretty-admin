@@ -15,8 +15,12 @@ pretty:
       - GET
       - POST
     devOpeningURI:
-      - /sysuser/info
       - /sysuser/query
+      - /sysuser/add
+      - /sysuser/update
+      - /sysuser/delete
+      - /sysuser/pwdreset
+      - /sysuser/pwd/isdefulat
       - /sysorg/tree
       - /sysorg/add
       - /sysorg/update
@@ -25,10 +29,12 @@ pretty:
       - /sysmenu/add
       - /sysmenu/update
       - /sysmenu/delete
+      - /sysmenu/tree/user
       - /sysrole/query
       - /sysrole/add
       - /sysrole/update
       - /sysrole/delete
+      - /sysconfig/all
 swagger:
   enable: true # 启用swagger
 

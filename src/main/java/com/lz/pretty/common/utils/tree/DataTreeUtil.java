@@ -10,6 +10,22 @@ import java.util.List;
  */
 public class DataTreeUtil {
 
+    //构造无根树形结构数据，比如系统左侧菜单栏
+    public static <ID, T extends DataTree<T, ID>> List<T> buildTreeWithoutRoot(List<T> paramList, ID rootNodeId) {
+        List<T> returnList = new ArrayList<T>();
+        for (T node : paramList) {//查找根节点
+            //从2级节点开始构造
+            if (node.getParentId().equals(rootNodeId)) {
+                returnList.add(node);
+            }
+        }
+        for (T entry : paramList) {
+            toTreeChildren(returnList, entry);
+        }
+        return returnList;
+    }
+
+
     /**
      * 生成树方法
      *
@@ -21,6 +37,7 @@ public class DataTreeUtil {
     public static <ID, T extends DataTree<T, ID>> List<T> buildTree(List<T> paramsList, ID rootNodeId) {
         ArrayList<T> returnList = new ArrayList<>();
         for (T node : paramsList) {
+            //从1级节点开始构造
             if (node.getId().equals(rootNodeId)) {
                 returnList.add(node);
             }

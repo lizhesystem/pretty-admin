@@ -14,9 +14,12 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class SysUserOrgVO extends SysUser {
+
     private String orgName;
 
+    //开始时间
     private Date createStartTime;
 
+    //结束时间
     private Date createEndTime;
 }

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -152,5 +153,22 @@ public class SysMenuService {
     public void saveCheckedKeys(Long roleId, List<Long> checkedIds) {
         sysRoleMenuMapper.delete(new QueryWrapper<SysRoleMenu>().eq("role_id", roleId));
         mySystemMapper.insertRoleMenuIds(roleId, checkedIds);
+    }
+
+    public List<SysMenuNode> getMenuTreeByUsername(String username) {
+        List<SysMenu> sysMenus = mySystemMapper.selectMenuByUsername(username);
+
+        if (sysMenus.size() > 0) {
+            Long routMenuId = sysMenus.get(0).getId();
+
+            List<SysMenuNode> sysMenuNodes = sysMenus.stream().map(item -> {
+                SysMenuNode node = new SysMenuNode();
+                BeanUtils.copyProperties(item, node);
+                return node;
+            }).collect(Collectors.toList());
+
+            return DataTreeUtil.buildTreeWithoutRoot(sysMenuNodes, routMenuId);
+        }
+        return new ArrayList<>();
     }
 }

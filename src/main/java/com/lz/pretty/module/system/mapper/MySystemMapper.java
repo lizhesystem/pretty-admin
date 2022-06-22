@@ -3,8 +3,6 @@ package com.lz.pretty.module.system.mapper;
 import com.lz.pretty.module.system.model.SysApi;
 import com.lz.pretty.module.system.model.SysMenu;
 import com.lz.pretty.module.system.model.SysOrg;
-import com.lz.pretty.module.system.model.SysUser;
-import com.lz.pretty.module.system.model.vo.SysUserOrgVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -99,5 +97,11 @@ public interface MySystemMapper {
     void insertRoleMenuIds(@Param("roleId") Long roleId, @Param("checkedIds") List<Long> checkedIds);
 
 
-    List<SysUserOrgVO> selectUser(SysUser sysUser);
+    /**
+     * 根据用户名获取左侧菜单列表
+     *
+     * @param username
+     * @return
+     */
+    List<SysMenu> selectMenuByUsername(String username);
 }

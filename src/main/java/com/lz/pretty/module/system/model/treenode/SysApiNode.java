@@ -16,7 +16,7 @@ public class SysApiNode extends SysApi implements DataTree<SysApiNode, Long> {
 
     @Override
     public Long getParentId() {
-        return super.getId();
+        return super.getApiPid();
     }
 
     @Override

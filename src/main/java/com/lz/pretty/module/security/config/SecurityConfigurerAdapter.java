@@ -56,9 +56,9 @@ public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/authentication", "/refreshtoken").permitAll();
         // 通过配置实现的不需要JWT令牌就可以访问的接口
-        // for(String uri : jwtProperties.getPermitAllURI()){
-        //     http.authorizeRequests().antMatchers(uri).permitAll();
-        // }
+        for (String uri : jwtProperties.getPermitAllURI()) {
+            http.authorizeRequests().antMatchers(uri).permitAll();
+        }
         // RBAC权限控制级别的接口权限校验
         http.authorizeRequests().anyRequest()
                 .access("@rabcService.hasPermission(request,authentication)");

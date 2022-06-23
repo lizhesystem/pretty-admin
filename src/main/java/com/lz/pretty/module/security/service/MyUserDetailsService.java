@@ -3,13 +3,11 @@ package com.lz.pretty.module.security.service;
 
 import com.lz.pretty.module.security.bean.MyUserDetails;
 import com.lz.pretty.module.security.mapper.MyUserDetailsServiceMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -53,5 +51,11 @@ public class MyUserDetailsService implements UserDetailsService {
                 AuthorityUtils.commaSeparatedStringToAuthorityList(String.join(",", authorties))
         );
         return myUserDetails;
+    }
+
+    public List<String> findRoleByUsername(String username) {
+        // 加载用户角色列表
+        return myUserDetailsServiceMapper.findRoleByUserName(username);
+
     }
 }

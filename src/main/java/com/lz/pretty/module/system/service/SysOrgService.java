@@ -50,7 +50,7 @@ public class SysOrgService {
             return node;
         }).collect(Collectors.toList());
 
-        if (StringUtils.isNoneEmpty(orgNameLike)) {
+        if (StringUtils.isNotEmpty(orgNameLike)) {
             // 根据组织名称查询，返回平面列表
             return sysOrgNodes;
         } else {

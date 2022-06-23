@@ -65,15 +65,15 @@
             <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
 
-        <!--<dependency>-->
-        <!--    <groupId>org.springframework.boot</groupId>-->
-        <!--    <artifactId>spring-boot-configuration-processor</artifactId>-->
-        <!--    <optional>true</optional>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--    <groupId>org.springframework.boot</groupId>-->
-        <!--    <artifactId>spring-boot-autoconfigure</artifactId>-->
-        <!--</dependency>-->
+        <!--ehcache缓存-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+        </dependency>
 
         <!--swagger接口文档-->
         <dependency>

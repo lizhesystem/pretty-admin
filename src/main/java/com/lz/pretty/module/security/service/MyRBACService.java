@@ -34,6 +34,9 @@ public class MyRBACService {
     private MyRBACServiceMapper myRBACServiceMapper;
 
 
+    /**
+     * 接口鉴权拦截，判断用户是否有该资源的访问权限
+     */
     public boolean hasPermission(HttpServletRequest request, Authentication authentication) {
         Object principal = authentication.getPrincipal();
         if (principal instanceof UserDetails) {
@@ -42,11 +45,11 @@ public class MyRBACService {
             List<GrantedAuthority> authorityList = AuthorityUtils.commaSeparatedStringToAuthorityList(request.getRequestURI());
 
             // 判断某用户是否具有该request资源的访问权限
-            log.info("openURI = {}",jwtProperties.getDevOpeningURI().toString());
+            log.info("openURI = {}", jwtProperties.getDevOpeningURI().toString());
             return userDetails.getAuthorities().contains(authorityList.get(0))
                     || jwtProperties.getDevOpeningURI().contains(request.getRequestURI());
         }
-        return true;
+        return false;
     }
 
 }

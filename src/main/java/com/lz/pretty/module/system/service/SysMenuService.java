@@ -127,15 +127,6 @@ public class SysMenuService {
 
     }
 
-    // 更改菜单状态
-    public void updateStatus(Long menuId, Boolean status) {
-        Assert.isTrue(menuId != null, "修改操作必须带主键");
-        SysMenu sysMenu = new SysMenu();
-        sysMenu.setId(menuId);
-        sysMenu.setStatus(status);
-        sysMenuMapper.updateById(sysMenu);
-
-    }
 
     // 获取在角色设置菜单权限展开的项
     public List<String> getExpandedKeys() {
@@ -170,5 +161,16 @@ public class SysMenuService {
             return DataTreeUtil.buildTreeWithoutRoot(sysMenuNodes, routMenuId);
         }
         return new ArrayList<>();
+    }
+
+
+    // 更改菜单状态
+    public void updateStatus(Long menuId, Boolean status) {
+        Assert.isTrue(menuId != null, "修改操作必须带主键");
+        SysMenu sysMenu = new SysMenu();
+        sysMenu.setId(menuId);
+        sysMenu.setStatus(status);
+        sysMenuMapper.updateById(sysMenu);
+
     }
 }

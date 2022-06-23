@@ -3,8 +3,12 @@ package com.lz.pretty.common.exception;
 import com.lz.pretty.common.constant.CustomExceptionType;
 import com.lz.pretty.common.domain.AjaxResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.stream.Collectors;
 
 /**
  * 类描述:
@@ -35,4 +39,12 @@ public class GlobalExceptionHandler {
         return AjaxResponse.error(new CustomException(CustomExceptionType.OTHER_ERROR));
     }
 
+    // @RequestBody上使用@Valid 实体上使用@NotNull等，验证失败后抛出的异常是MethodArgumentNotValidException异常
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public AjaxResponse validException(MethodArgumentNotValidException e) {
+        String message = e.getBindingResult().getAllErrors().stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .collect(Collectors.joining());
+        return AjaxResponse.error(CustomExceptionType.USER_INPUT_ERROR, message);
+    }
 }

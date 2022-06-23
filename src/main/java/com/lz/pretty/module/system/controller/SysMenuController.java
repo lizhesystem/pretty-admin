@@ -22,7 +22,7 @@ public class SysMenuController {
     @Autowired
     private SysMenuService sysMenuService;
 
-    @RequestMapping("/tree")
+    @PostMapping("/tree")
     public AjaxResponse tree(@RequestParam("menuNameLike") String menuNameLike,
                              @RequestParam("menuStatus") Boolean menuStatus) {
         return AjaxResponse.success(sysMenuService.getMenuTree(menuNameLike, menuStatus));
@@ -44,14 +44,6 @@ public class SysMenuController {
     public AjaxResponse delete(@RequestBody SysMenu sysMenu) {
         sysMenuService.delete(sysMenu);
         return AjaxResponse.success("删除菜单成功！");
-    }
-
-    //组织管理：更新组织禁用状态
-    @PostMapping(value = "/status/change")
-    public AjaxResponse update(@RequestParam Long menuId,
-                               @RequestParam Boolean status) {
-        sysMenuService.updateStatus(menuId, status);
-        return AjaxResponse.success("菜单禁用状态更新成功！");
     }
 
     /**
@@ -93,5 +85,15 @@ public class SysMenuController {
     public AjaxResponse userTree(@RequestParam String username) {
         return AjaxResponse.success(sysMenuService.getMenuTreeByUsername(username));
     }
+
+
+    // 更新菜单状态
+    @PostMapping(value = "/status/change")
+    public AjaxResponse update(@RequestParam Long menuId,
+                               @RequestParam Boolean status) {
+        sysMenuService.updateStatus(menuId, status);
+        return AjaxResponse.success("菜单禁用状态更新成功！");
+    }
+
 
 }

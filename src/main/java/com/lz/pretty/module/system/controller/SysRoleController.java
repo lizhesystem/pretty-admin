@@ -6,8 +6,6 @@ import com.lz.pretty.module.system.service.SysRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  * 类描述: 角色管理
  *
@@ -41,5 +39,13 @@ public class SysRoleController {
     public AjaxResponse delete(@RequestParam Integer roleId) {
         sysRoleService.deleteRole(roleId);
         return AjaxResponse.success("删除角色成功!");
+    }
+
+    //角色管理：更新角色禁用状态
+    @PostMapping(value = "/status/change")
+    public AjaxResponse update(@RequestParam Long roleId,
+                               @RequestParam Boolean status) {
+        sysRoleService.updateStatus(roleId, status);
+        return AjaxResponse.success("角色禁用状态更新成功！");
     }
 }

@@ -135,4 +135,12 @@ public class SysApiService {
         mySystemMapper.insertRoleApiIds(roleId, checkedIds);
     }
 
+    // 修改api状态
+    public void updateStatus(Long apiId, Boolean status) {
+        org.springframework.util.Assert.isTrue(apiId != null, "修改操作必须带主键");
+        SysApi sysApi = new SysApi();
+        sysApi.setId(apiId);
+        sysApi.setStatus(status);
+        sysApiMapper.updateById(sysApi);
+    }
 }

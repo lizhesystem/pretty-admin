@@ -10,6 +10,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.List;
+
 /**
  * 类描述:JWT 登录认证
  *
@@ -62,5 +64,16 @@ public class JwtAuthService {
             return jwtTokenUtil.refreshToken(oldToken);
         }
         return null;
+    }
+
+    /**
+     * 获取角色信息列表
+     *
+     * @param token
+     * @return
+     */
+    public List<String> roles(String token) {
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        return myUserDetailsService.findRoleByUsername(username);
     }
 }

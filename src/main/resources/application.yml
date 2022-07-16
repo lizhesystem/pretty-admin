@@ -1,5 +1,7 @@
 server:
   port: 8889
+  servlet:
+    context-path: /api/v1
 
 pretty:
   jwt:

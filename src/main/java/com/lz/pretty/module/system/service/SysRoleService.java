@@ -51,4 +51,13 @@ public class SysRoleService {
         Assert.isTrue(id != null, "删除数据必须指定更新条件（主键）");
         sysRoleMapper.deleteById(id);
     }
+
+    // 角色管理：修改角色状态
+    public void updateStatus(Long roleId, Boolean status) {
+        Assert.isTrue(roleId != null, "修改操作必须带主键");
+        SysRole sysRole = new SysRole();
+        sysRole.setId(roleId);
+        sysRole.setStatus(status);
+        sysRoleMapper.updateById(sysRole);
+    }
 }

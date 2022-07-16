@@ -114,4 +114,12 @@ public class SysUserService {
                     "原密码输入错误，请确认后重新输入！");
         }
     }
+
+    public void updateEnabled(Long userId, Boolean enabled) {
+        Assert.isTrue(userId != null, "修改操作必须带主键");
+        SysUser sysUser = new SysUser();
+        sysUser.setId(userId);
+        sysUser.setEnabled(enabled);
+        sysUserMapper.updateById(sysUser);
+    }
 }

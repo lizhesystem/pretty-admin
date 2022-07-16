@@ -12,6 +12,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -45,6 +46,21 @@ public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
     @Resource
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
+    // 默认允许访问的接口
+    private String[] PERMIT_API_LIST = {
+            "/authentication",
+            "/refreshtoken",
+            "/roles"
+    };
+
+    private String[] PERMIT_RES_LIST = {
+            "/swagger-ui/swagger-resources/**",
+            "/swagger-resources/**",
+            "/webjars/**",
+            "/swagger-ui/**",
+            "/v2/api-docs",
+            "/v3/api-docs",
+    };
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -54,7 +70,7 @@ public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
         http.cors()
                 .and().addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/authentication", "/refreshtoken").permitAll();
+                .antMatchers(PERMIT_API_LIST).permitAll();
         // 通过配置实现的不需要JWT令牌就可以访问的接口
         for (String uri : jwtProperties.getPermitAllURI()) {
             http.authorizeRequests().antMatchers(uri).permitAll();
@@ -67,7 +83,14 @@ public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
     // 认证基于BCryptPasswordEncoder加密解密
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(myUserDetailsService)
+                .passwordEncoder(passwordEncoder());
+    }
+
+    @Override
+    public void configure(WebSecurity web) {
+        //将项目中静态资源路径开放出来
+        web.ignoring().antMatchers(PERMIT_RES_LIST);
     }
 
     @Bean

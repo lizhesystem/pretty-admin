@@ -81,4 +81,12 @@ public class SysUserController extends BaseController {
         sysUserService.changePwd(username, oldPass, newPass);
         return AjaxResponse.success("修改密码成功!");
     }
+
+    //用户管理：更新用户激活状态
+    @PostMapping(value = "/enabled/change")
+    public AjaxResponse update(@RequestParam Long userId,
+                               @RequestParam Boolean enabled) {
+        sysUserService.updateEnabled(userId, enabled);
+        return AjaxResponse.success("用户状态更新成功！");
+    }
 }

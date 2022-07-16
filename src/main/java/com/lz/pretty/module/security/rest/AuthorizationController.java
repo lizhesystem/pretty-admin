@@ -5,10 +5,10 @@ import com.lz.pretty.common.exception.CustomException;
 import com.lz.pretty.module.security.bean.JwtProperties;
 import com.lz.pretty.module.security.service.JwtAuthService;
 import com.lz.pretty.module.security.service.dto.AuthUserDto;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 /**
  * 类描述:
@@ -27,7 +27,7 @@ public class AuthorizationController {
     JwtAuthService jwtAuthService;
 
     @PostMapping("/authentication")
-    public AjaxResponse login(@Validated @RequestBody AuthUserDto userDto) {
+    public AjaxResponse login(@RequestBody @Valid AuthUserDto userDto) {
 
         String username = userDto.getUsername();
         String password = userDto.getPassword();
@@ -42,5 +42,10 @@ public class AuthorizationController {
     @RequestMapping("/refreshtoken")
     public AjaxResponse refresh(@RequestHeader("${pretty.jwt.header}") String token) {
         return AjaxResponse.success(jwtAuthService.refreshToken(token));
+    }
+
+    @RequestMapping("/roles")
+    public AjaxResponse roles(@RequestHeader("${pretty.jwt.header}") String token) {
+        return AjaxResponse.success(jwtAuthService.roles(token));
     }
 }

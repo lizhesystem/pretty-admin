@@ -78,4 +78,12 @@ public class SycApiController {
     }
 
 
+    //接口管理：更新接口禁用状态
+    @PostMapping("/status/change")
+    public AjaxResponse update(@RequestParam Long apiId,
+                               @RequestParam Boolean status) {
+        sysapiService.updateStatus(apiId, status);
+        return AjaxResponse.success("接口禁用状态更新成功！");
+    }
+
 }

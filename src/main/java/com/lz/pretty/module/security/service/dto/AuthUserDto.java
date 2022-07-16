@@ -1,8 +1,6 @@
 package com.lz.pretty.module.security.service.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
@@ -12,15 +10,13 @@ import javax.validation.constraints.NotBlank;
  * @author lz
  * @create 2022-06-15 13:51
  */
-@Getter
-@Setter
-@ToString
+@Data
 public class AuthUserDto {
 
-    @NotBlank
+    @NotBlank(message = "用户名不能为空")
     private String username;
 
-    @NotBlank
+    @NotBlank(message = "密码不能为空")
     private String password;
 
     // 验证码

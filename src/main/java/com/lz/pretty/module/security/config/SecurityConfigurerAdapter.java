@@ -99,7 +99,7 @@ public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * 跨站资源共享配置
+     * 跨站资源共享配置(通过配置文件配置)
      */
     @Bean
     CorsConfigurationSource corsConfigurationSource() {

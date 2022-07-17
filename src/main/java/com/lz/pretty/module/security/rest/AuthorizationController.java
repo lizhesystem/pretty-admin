@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 类描述:
@@ -21,9 +23,6 @@ import javax.validation.Valid;
 public class AuthorizationController {
 
     @Resource
-    JwtProperties jwtProperties;
-
-    @Resource
     JwtAuthService jwtAuthService;
 
     @PostMapping("/authentication")
@@ -33,7 +32,9 @@ public class AuthorizationController {
         String password = userDto.getPassword();
 
         try {
-            return AjaxResponse.success(jwtAuthService.login(username, password));
+            HashMap<String, Object> resultToken = new HashMap<>();
+            resultToken.put("token",jwtAuthService.login(username, password));
+            return AjaxResponse.success(resultToken);
         } catch (CustomException e) {
             return AjaxResponse.error(e);
         }

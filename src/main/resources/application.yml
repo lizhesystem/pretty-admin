@@ -1,7 +1,5 @@
 server:
   port: 8889
-  servlet:
-    context-path: /api/v1
 
 pretty:
   jwt:
@@ -11,8 +9,7 @@ pretty:
     header: JWTHeaderName
     useDefaultController: true
     corsAllowedOrigins:
-      - http://localhost:8888
-      - http://localhost:8889
+      - http://localhost:3301
     corsAllowedMethods:
       - GET
       - POST

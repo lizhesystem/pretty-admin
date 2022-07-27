@@ -2,6 +2,7 @@ package com.lz.pretty.common.domain;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,8 +30,9 @@ public class BaseColumns implements Serializable {
     /**
      * 本条记录创建时间
      */
-    @TableField(fill = FieldFill.INSERT, select = false)
+    @TableField(fill = FieldFill.INSERT, select = true)
     @ApiModelProperty(value = "创建时间", hidden = true)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;
 
     /**
@@ -43,8 +45,9 @@ public class BaseColumns implements Serializable {
     /**
      * 本条记录更新时间
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE, select = false)
+    @TableField(fill = FieldFill.INSERT_UPDATE, select = true)
     @ApiModelProperty(value = "更新时间", hidden = true)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime updateTime;
 
     /**

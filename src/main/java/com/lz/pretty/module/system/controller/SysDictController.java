@@ -4,6 +4,7 @@ import com.lz.pretty.common.controller.BaseController;
 import com.lz.pretty.common.domain.AjaxResponse;
 import com.lz.pretty.common.page.TableDataInfo;
 import com.lz.pretty.module.system.model.SysDict;
+import com.lz.pretty.module.system.model.vo.SysDictVo;
 import com.lz.pretty.module.system.service.SysDictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -47,19 +48,16 @@ public class SysDictController extends BaseController {
 
     /**
      * 根据名称或者编码模糊查找（分页）
-     *
-     * @param groupName 分组名称
-     * @param groupCode 分组编码
-     * @param itemDesc  字典描述
      * @return 数据字典列表
      */
     @PostMapping("/query/page")
-    public TableDataInfo queryListPage(@RequestParam String groupName,
-                                       @RequestParam String groupCode,
-                                       @RequestParam String itemDesc) {
+    public AjaxResponse queryListPage(@RequestBody SysDictVo sysDict) {
         startPage();
-        List<SysDict> sysDictList = sysDictService.queryPage(groupName, groupCode, itemDesc);
-        return getDataTable(sysDictList);
+        List<SysDict> sysDictList = sysDictService.queryPage(
+                sysDict.getGroupName(),
+                sysDict.getGroupCode(),
+                sysDict.getItemDesc());
+        return AjaxResponse.success(getDataTable(sysDictList));
     }
 
     @PostMapping("/add")

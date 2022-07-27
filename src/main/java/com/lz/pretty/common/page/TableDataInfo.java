@@ -22,7 +22,7 @@ public class TableDataInfo implements Serializable {
     /**
      * 列表数据
      */
-    private List<?> rows;
+    private List<?> data;
 
     /**
      * 消息状态码
@@ -47,7 +47,7 @@ public class TableDataInfo implements Serializable {
      * @param total 总记录数
      */
     public TableDataInfo(List<?> list, int total) {
-        this.rows = list;
+        this.data = list;
         this.total = total;
     }
 

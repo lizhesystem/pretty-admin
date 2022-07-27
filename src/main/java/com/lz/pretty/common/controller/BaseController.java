@@ -59,9 +59,8 @@ public class BaseController {
     @SuppressWarnings({"rawtypes", "unchecked"})
     protected TableDataInfo getDataTable(List<?> list) {
         TableDataInfo rspData = new TableDataInfo();
-        rspData.setCode(200);
         rspData.setMessage("查询成功");
-        rspData.setRows(list);
+        rspData.setData(list);
         rspData.setTotal(new PageInfo(list).getTotal());
         return rspData;
     }

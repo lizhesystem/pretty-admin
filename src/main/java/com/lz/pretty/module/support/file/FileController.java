@@ -1,5 +1,6 @@
 package com.lz.pretty.module.support.file;
 
+import com.lz.pretty.common.utils.StringUtils;
 import com.lz.pretty.config.PrettyConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +11,6 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URLEncoder;
 
@@ -28,10 +28,10 @@ public class FileController {
 
     @GetMapping("/downloadLocal")
     public void downloadLocal(String fileName, HttpServletResponse response) throws IOException {
-        File file = new File(prettyConfig.getProfile() + fileName);
-        if (!file.exists()) {
-            throw new FileNotFoundException("文件路径" + prettyConfig.getProfile() + "不存在!");
+        if (StringUtils.isEmpty(fileName)) {
+            fileName = "pic.png";
         }
+
         // 读到流中
         FileInputStream inputStream = new FileInputStream(prettyConfig.getProfile() + fileName);
         response.reset();
